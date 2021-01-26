@@ -22,14 +22,21 @@ depositBtn.addEventListener('click', function() {
 const withdrawBtn = document.getElementById('addWithdraw');
 withdrawBtn.addEventListener('click', function() {
     const withdrawNumber = getInputText('withdrawAmount');
+
+    updateSpanText('currentWithdraw', withdrawNumber);
+    updateSpanText('currentBalance', -1 * withdrawNumber);
+
+    document.getElementById('withdrawAmount').value = '';
 })
 
+// for input text convert to int
 function getInputText(id) {
     const Amount = document.getElementById(id).value;
     const amountNumber = parseFloat(Amount);
     return amountNumber;
 }
 
+// for span tag element convert to int and make added or sub
 function updateSpanText (id, depositNumber) {
     const current = document.getElementById(id).innerText;
     const currentNumber = parseFloat(current);
