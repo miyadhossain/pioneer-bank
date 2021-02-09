@@ -11,11 +11,17 @@ loginBtn.addEventListener('click', function() {
 const depositBtn = document.getElementById('addDeposit');
 depositBtn.addEventListener('click', function() {
     const depositNumber = getInputText('depositAmount');
+    
+    if (depositNumber < 0) {
+        alert("Deposit number cannot  be negative");
+    }
+    else {
+        updateSpanText('currentDeposit', depositNumber);
+        updateSpanText('currentBalance', depositNumber);
+        document.getElementById('depositAmount').value = '';
+    }
 
-
-    updateSpanText('currentDeposit', depositNumber);
-    updateSpanText('currentBalance', depositNumber);
-    document.getElementById('depositAmount').value = '';
+    
 })
 
 // withdraw button event handler
@@ -37,9 +43,9 @@ function getInputText(id) {
 }
 
 // for span tag element convert to int and make added or sub
-function updateSpanText (id, depositNumber) {
+function updateSpanText (id, number) {
     const current = document.getElementById(id).innerText;
     const currentNumber = parseFloat(current);
-    const totalAmount = depositNumber + currentNumber;
+    const totalAmount = number + currentNumber;
     document.getElementById(id).innerText = totalAmount;
 }
